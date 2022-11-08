@@ -1,2 +1,2 @@
 # Bot_Email
-Bot por correo electronico
+un pequeño Bot por correo electronico al cual le envias un comando y retorna un correo en respuesta. Me gustaria pedir ayuda a todo el que lea esto, pues solo soy un principiante en python y no logro que el comando /chip trabaje correctamente, la intencion es que procese los pedidos sin que se vean afectados entre ellos cuando estos son solicitados consecutivamente. Mil gracias por todo el apollo que puedan ofrecerme
