@@ -5,7 +5,7 @@ import urllib.parse
 from urllib.parse import urlparse
 from duckduckgo_search import ddg
 import threading
-from telegram.ext import Updater, CommandHandler, MessageHandler#, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
 class MyThread(threading.Thread):
@@ -28,8 +28,6 @@ def run_data_sh(string):
 
 
 def DataSh(string):
-    print(TOKEN)
-    print(ID_CHAT)
     # Crear un evento para indicar cuando se ha recibido un archivo PDF
     pdf_recibido = threading.Event()
     # Variable para almacenar el nombre del archivo PDF
