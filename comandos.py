@@ -5,7 +5,8 @@ import urllib.parse
 from urllib.parse import urlparse
 from duckduckgo_search import ddg
 import threading
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, MessageHandler #, Filters
+from telegram.ext import Filters as telegram_filters
 
 
 class MyThread(threading.Thread):
