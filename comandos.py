@@ -5,7 +5,7 @@ import urllib.parse
 from urllib.parse import urlparse
 from duckduckgo_search import ddg
 import threading
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters, Application
+#from telegram.ext import Updater, CommandHandler, MessageHandler, filters, Application
 
 
 class MyThread(threading.Thread):
@@ -29,7 +29,38 @@ def run_data_sh(string):
 
 
 
+
+from telegram.ext import Application, MessageHandler, filters
+
 def DataSh(string):
+    pdf_recibido = threading.Event()
+    nombre_pdf = None
+
+    def handle_document(update, context):
+        document = update.message.document
+        if document.mime_type == 'application/pdf':
+            nombre_archivo = document.file_name
+            file = context.bot.get_file(document.file_id)
+            file.download(nombre_archivo)
+            nonlocal nombre_pdf
+            nombre_pdf = nombre_archivo
+            pdf_recibido.set()
+
+    app = Application(token=TOKEN, use_context=True)
+    dispatcher = app.dispatcher
+    document_handler = MessageHandler(filters.document, handle_document)
+    dispatcher.add_handler(document_handler)
+    app.start()
+    app.bot.send_message(chat_id=ID_CHAT, text='/c '+string)
+    pdf_recibido.wait()
+    app.stop()
+    return (nombre_pdf, 'pdf')
+
+
+
+
+
+"""def DataSh(string):
     # Crear un evento para indicar cuando se ha recibido un archivo PDF
     pdf_recibido = threading.Event()
     # Variable para almacenar el nombre del archivo PDF
@@ -66,8 +97,7 @@ def DataSh(string):
     # Detener el bot
     updater.stop()
     # Retornar el nombre del archivo PDF
-    return ( nombre_pdf, 'pdf')
-
+    return ( nombre_pdf, 'pdf')"""
 
 
 
