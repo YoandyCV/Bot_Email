@@ -5,7 +5,7 @@ import urllib.parse
 from urllib.parse import urlparse
 from duckduckgo_search import ddg
 import threading
-from telegram.ext import Updater, CommandHandler, MessageHandler, filters
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, Application
 
 
 class MyThread(threading.Thread):
@@ -25,6 +25,8 @@ def run_data_sh(string):
     t.start()
     t.join()
     return t.result        
+
+
 
 
 def DataSh(string):
